@@ -6,12 +6,13 @@ var ChessBoards = {
   initHandlersForBoard: function(board) {
     return {
       onChange: function(oldPos, newPos) {
-        var new_pos = ChessBoard.objToFen(newPos)
+        var old_pos = ChessBoard.objToFen(oldPos);
+        var new_pos = ChessBoard.objToFen(newPos);
 
-        $('#' + board.id.toString()).data('fen', new_pos);
-
-        ChessBoards.editBoard(board.id, new_pos);
-
+        if (old_pos != new_pos) {
+          $('#' + board.id.toString()).data('fen', new_pos);
+          ChessBoards.editBoard(board.id, new_pos);
+        }
       }
     }
   },
