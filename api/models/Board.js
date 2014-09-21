@@ -23,5 +23,13 @@ module.exports = {
       collection: 'piece',
       via: 'board'
     }
+  },
+
+  toFen: function() {
+    attributes.pieces.forEach(function (piece) {
+      console.log(piece);
+    })
+
+    return 'test'
   }
 };

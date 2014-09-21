@@ -30,6 +30,8 @@ var jsFilesToInject = [
   'js/dependencies/**/*.js',
 
   'js/**/jquery-2.1.1.min.js',
+  'js/**/chesboard-0.3.0.min.js',
+  'js/**/main.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
