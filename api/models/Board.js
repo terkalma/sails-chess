@@ -8,7 +8,20 @@
 module.exports = {
 
   attributes: {
+    name: {
+      type: 'string',
+      required: true,
+      unique: true
+    },
 
+    active: {
+      type: 'boolean',
+      defaultsTo: true
+    },
+
+    pieces: {
+      collection: 'piece',
+      via: 'board'
+    }
   }
 };
-
