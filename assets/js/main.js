@@ -16,6 +16,36 @@ var ChessBoards = {
     }
   },
 
+  bindEventHandlers: function(board) {
+    $('.clear').on('click', function(e) {
+      e.preventDefault();
+
+      var $this = $(this),
+          id = 0;
+      id = ChessBoards.getId($this);
+      ChessBoards.boards[id].clear();
+    });
+
+    $('.reset').on('click', function(e) {
+      e.preventDefault();
+
+      var $this = $(this),
+          id = 0;
+      id = ChessBoards.getId($this);
+      ChessBoards.boards[id].start();
+    });
+
+    $('.fen-form').on('submit', function(e) {
+      e.preventDefault();
+      var data = $(this).serializeArray();
+      id = ChessBoards.getId($(this));
+      ChessBoards.boards[id].position(data[0].value);
+    });
+  },
+
+  getId: function($this) {
+    return $this.closest('.board-container').find('.board').first().attr('id');
+  },
 
   init: function() {
     $('.board').each(function(index, board) {
@@ -29,6 +59,8 @@ var ChessBoards = {
         sparePieces: true,
         onChange: callbacks.onChange
       });
+
+      ChessBoards.bindEventHandlers();
     });
 
     io.socket.on('board',function(obj){
@@ -41,13 +73,12 @@ var ChessBoards = {
           $('#' + obj.id.toString()).data('fen', data.fen);
           ChessBoards.boards[obj.id].position(data.fen);
         }
-        // console.log('User '+previous.name+' has been updated to '+data.name);
       }
     });
   },
 
   editBoard: function(id, fen) {
-    console.log('Updating: ' + id.toString() + "to position: " + fen);
+    console.log('Updating: ' + id.toString() + " to position: " + fen);
     io.socket.get('boards/update_record',{id: id, fen: fen});
   }
 }

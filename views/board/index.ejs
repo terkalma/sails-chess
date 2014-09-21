@@ -7,16 +7,15 @@
       <div class="row board-container">
         <%- include board.ejs %>
         <div class="col-md-6" style="margin-top: 50px;">
-          <a href="#" class="btn btn-default btn-lg reset" role="button">Reset</a>
-          <a href="#" class="btn btn-warning btn-lg clear" role="button">Clear</a>
+          <a href="#" class="btn btn-default btn reset" role="button">Reset</a>
+          <a href="#" class="btn btn-warning btn clear" role="button">Clear</a>
 
-
-          <form class="form-inline" role="form" style="margin-top: 10px">
+          <form class="form-inline fen-form" role="form" style="margin-top: 10px">
             <div class="form-group">
-              <label class="sr-only" for="exampleInputEmail2">FEN</label>
-              <input type="text" class="form-control" id="<%=board.name.id%>-fen" placeholder="Enter FEN">
+              <label class="sr-only" for="<%=board.id%>-fen">FEN</label>
+              <input type="text" class="form-control" id="<%=board.id%>-fen" name="fen" placeholder="Enter FEN">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button class="btn btn-default btn submit-fen" type="submit">Submit</a>
           </form>
         </div>
       </div>
