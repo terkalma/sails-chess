@@ -9,7 +9,7 @@
 
 module.exports = {
 	index : function(req, res) {
-		Board.find().exec(function (err, boards) {
+		Board.find().populate('pieces').exec(function (err, boards) {
 			res.view({
 				boards: boards
 			});
