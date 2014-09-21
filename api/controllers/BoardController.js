@@ -9,10 +9,22 @@
 
 module.exports = {
 	index : function(req, res) {
-		Board.find().populate('pieces').exec(function (err, boards) {
+		Board.find().exec(function (err, boards) {
+			if (err) return next(err);
+
 			res.view({
 				boards: boards
 			});
+		});
+	},
+
+	subscribe: function(req, res) {
+		Board.find(function foundUsers(err, boards) {
+			if (err) return next(err);
+
+			Board.subscribe(req.socket);
+			Board.subscribe(req.socket, boards);
+
 		});
 	}
 };

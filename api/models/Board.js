@@ -19,17 +19,15 @@ module.exports = {
       defaultsTo: true
     },
 
+    fen: {
+      type: 'string',
+      defaultsTo: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
+      required: true
+    },
+
     pieces: {
       collection: 'piece',
       via: 'board'
     }
-  },
-
-  toFen: function() {
-    attributes.pieces.forEach(function (piece) {
-      console.log(piece);
-    })
-
-    return 'test'
   }
 };

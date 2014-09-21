@@ -1,13 +1,17 @@
-$(function () {
+var ChessBoards = ChessBoards || {};
 
+var ChessBoards = {
+  boards : {},
 
-    console.log('Initalizing application...');
+  initHandlersForBoard: function(board) {
+    return {}
+  },
 
-    var ChessBoards = ChessBoards || {};
-
-    ChessBoards.boards = {};
-
+  init: function() {
     $('.board').each(function(index, board) {
+
+      ChessBoards.initHandlersForBoard(board);
+
       ChessBoards.boards[board.id] = new ChessBoard(board.id, {
         draggable: true,
         dropOffBoard: 'trash',
@@ -15,4 +19,10 @@ $(function () {
         sparePieces: true
       });
     });
+  }
+}
+
+$(function () {
+    console.log('Initalizing application...');
+    ChessBoards.init();
 });
