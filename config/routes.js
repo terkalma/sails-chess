@@ -32,7 +32,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': 'BoardController.index'
+  '/': 'BoardController.index',
+  'boards/update_record': 'BoardController.update_record'
 
 
 
