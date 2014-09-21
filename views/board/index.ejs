@@ -1,1 +1,7 @@
 <h1> These are the chessboards </h1>
+
+<% boards.forEach(function(board)  { %>
+    <li><%= board.name %></li>
+
+    <%- include board.ejs %>
+<% }); %>

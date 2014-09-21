@@ -6,7 +6,11 @@
  */
 
 module.exports = {
-	// index : function(req, res) {
-	// 	res.view();
-	// }
+	index : function(req, res) {
+		Board.find().exec(function (err, boards) {
+			res.view({
+				boards: boards
+			});
+		});
+	}
 };
