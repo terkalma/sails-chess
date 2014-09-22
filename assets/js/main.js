@@ -9,12 +9,25 @@ var ChessBoards = {
         var old_pos = ChessBoard.objToFen(oldPos);
         var new_pos = ChessBoard.objToFen(newPos);
 
-        if (old_pos != new_pos) {
+        if (old_pos != new_pos && !ChessBoards.lock) {
           $('#' + board.id.toString()).data('fen', new_pos);
           ChessBoards.editBoard(board.id, new_pos);
         }
+        ChessBoards.unlockBoard();
       }
     }
+  },
+
+  lock: false,
+
+  lockBoard: function() {
+    ChessBoards.lock = true;
+    console.log("Board Locked");
+  },
+
+  unlockBoard: function() {
+    ChessBoards.lock = false;
+    console.log("Board UnLocked");
   },
 
   bindEventHandlers: function(board) {
@@ -39,8 +52,17 @@ var ChessBoards = {
     $('.fen-form').on('submit', function(e) {
       e.preventDefault();
       var data = $(this).serializeArray();
-      id = ChessBoards.getId($(this));
+      var id = ChessBoards.getId($(this));
       ChessBoards.boards[id].position(data[0].value);
+    });
+
+    $('.flip').on('click', function(e) {
+      e.preventDefault();
+
+      var $this = $(this),
+          id = 0;
+      id = ChessBoards.getId($this);
+      ChessBoards.boards[id].flip();
     });
   },
 
@@ -69,7 +91,8 @@ var ChessBoards = {
       if (obj.verb == 'updated') {
 
         var data = obj.data;
-        if ($('#' + obj.id.toString()).data('fen') != data.fen) {
+        if (ChessBoards.boards[obj.id].fen() != data.fen) {
+          ChessBoards.lockBoard();
           console.log(data.fen);
           $('#' + obj.id.toString()).data('fen', data.fen);
           ChessBoards.boards[obj.id].position(data.fen);
@@ -80,6 +103,7 @@ var ChessBoards = {
 
   editBoard: function(id, fen) {
     console.log('Updating: ' + id.toString() + " to position: " + fen);
+    ChessBoards.lockBoard();
     io.socket.get('boards/update_record',{id: id, fen: fen});
   }
 }

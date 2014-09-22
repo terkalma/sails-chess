@@ -1,4 +1,4 @@
-<h1> These are the chessboards </h1>
+<h1> Hellu </h1>
 
 <div class="panel panel-warning">
 <% boards.forEach(function(board)  { %>
@@ -7,6 +7,7 @@
       <div class="row board-container">
         <%- include board.ejs %>
         <div class="col-md-6" style="margin-top: 50px;">
+          <a href="#" class="btn btn-default btn flip" role="button">Flip</a>
           <a href="#" class="btn btn-default btn reset" role="button">Reset</a>
           <a href="#" class="btn btn-warning btn clear" role="button">Clear</a>
 

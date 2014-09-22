@@ -22,9 +22,9 @@ module.exports = {
 
 		if (idSent && newFen && req.isSocket) {
 			Board.update({id: idSent},{fen: newFen}).exec(function (err, updated) {
-				if (err) return next(err);
-
-				Board.publishUpdate(updated[0].id, {fen: newFen});
+				if (!err) {
+					Board.publishUpdate(updated[0].id, {fen: newFen});
+				}
 			});
 		}
 	},
@@ -32,9 +32,9 @@ module.exports = {
 	subscribe: function(req, res) {
 		if (req.isSocket) {
 			Board.find(function foundUsers(err, boards) {
-				if (err) return next(err);
-
-				Board.subscribe(req.socket, boards);
+				if (!err) {
+					Board.subscribe(req.socket, boards);
+				}
 			});
 		}
 	}
