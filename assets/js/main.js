@@ -31,6 +31,7 @@ var ChessBoards = {
   },
 
   bindEventHandlers: function(board) {
+    console.log('laska');
     $('.clear').on('click', function(e) {
       e.preventDefault();
 
@@ -83,8 +84,9 @@ var ChessBoards = {
         onChange: callbacks.onChange
       });
 
-      ChessBoards.bindEventHandlers();
     });
+
+    ChessBoards.bindEventHandlers();
 
     io.socket.on('board',function(obj){
       console.log("Caught the event");
