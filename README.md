@@ -1,6 +1,8 @@
-## Simple chessboard app
+# Simple chessboard app
 
-# Changes made by one client seamlessly propagate to all active clients. 
+### Helpful tool for remote collaborative position analysis. 
+* Ability to setup positions using FEN after which everybody involved can freely modify it.
+* Changes made by one client seamlessly propagate to all active clients.
 
 Built using [Sails](http://sailsjs.org) and [Chessboard.js](http://chessboardjs.com/)
 
