@@ -6,6 +6,6 @@
 
 Built using [Sails](http://sailsjs.org) and [Chessboard.js](http://chessboardjs.com/)
 
-![board example](http://i.imgur.com/mbjEJS5.png "board")
+![board example](http://i.imgur.com/7yilXGP.gif "board")
 
 
